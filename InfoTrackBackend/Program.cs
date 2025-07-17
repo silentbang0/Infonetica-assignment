@@ -6,7 +6,7 @@ var app = builder.Build();
 
 var box = new BrainBox();
 
-// 🧱 Forge a new MapDraft (workflow definition)
+//  Forge a new MapDraft (workflow definition)
 app.MapPost("/forge/mapdraft", (MapDraft draft) =>
 {
     if (box.DraftStore.ContainsKey(draft.RefTag))
@@ -25,7 +25,7 @@ app.MapPost("/forge/mapdraft", (MapDraft draft) =>
     return Results.Ok($"MapDraft '{draft.RefTag}' forged.");
 });
 
-// 🔍 Retrieve an existing draft
+// Retrieve an existing draft
 app.MapGet("/forge/mapdraft/{id}", (string id) =>
 {
     if (!box.DraftStore.TryGetValue(id, out var draft))
@@ -34,7 +34,7 @@ app.MapGet("/forge/mapdraft/{id}", (string id) =>
     return Results.Ok(draft);
 });
 
-// 🚀 Kickstart a new LiveTrace (workflow instance)
+// Kickstart a new LiveTrace (workflow instance)
 app.MapPost("/playline/kickstart", (string draftId) =>
 {
     if (!box.DraftStore.TryGetValue(draftId, out var draft))
@@ -56,7 +56,7 @@ app.MapPost("/playline/kickstart", (string draftId) =>
     return Results.Ok(new { TraceId = runId });
 });
 
-// ➡️ Hop to the next state via a move
+// Hop to the next state via a move
 app.MapPost("/playline/hop", (string traceId, string moveCode) =>
 {
     if (!box.ActiveRuns.TryGetValue(traceId, out var trace))
@@ -81,7 +81,7 @@ app.MapPost("/playline/hop", (string traceId, string moveCode) =>
     return Results.Ok("Hop complete.");
 });
 
-// 🧾 View current status and history of an instance
+// View current status and history of an instance
 app.MapGet("/playline/snapshot/{id}", (string id) =>
 {
     if (!box.ActiveRuns.TryGetValue(id, out var trace))
