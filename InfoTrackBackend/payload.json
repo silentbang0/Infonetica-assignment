@@ -1,0 +1,14 @@
+{
+  "refTag": "leave-process",
+  "phases": [
+    { "key": "draft", "label": "Draft", "starter": true, "terminator": false, "usable": true },
+    { "key": "submitted", "label": "Submitted", "starter": false, "terminator": false, "usable": true },
+    { "key": "approved", "label": "Approved", "starter": false, "terminator": true, "usable": true },
+    { "key": "rejected", "label": "Rejected", "starter": false, "terminator": true, "usable": true }
+  ],
+  "switches": [
+    { "code": "submit", "caption": "Submit Leave", "usable": true, "origins": ["draft"], "destination": "submitted" },
+    { "code": "approve", "caption": "Approve Leave", "usable": true, "origins": ["submitted"], "destination": "approved" },
+    { "code": "reject", "caption": "Reject Leave", "usable": true, "origins": ["submitted"], "destination": "rejected" }
+  ]
+}
